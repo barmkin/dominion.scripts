@@ -1,8 +1,4 @@
 # dominion.scripts
-domionion.games scripts
-
-
-# dominion.scripts
 
 dominion.scripts is a collection of userscripts usable on https://dominion.games/ .
 This repository is currently composed of
