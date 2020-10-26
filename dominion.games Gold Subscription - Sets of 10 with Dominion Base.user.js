@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         dominion.games Gold Subscription - Sets of 10 with Dominion Base
 // @namespace    games.dominion.script
-// @version      0.1
+// @version      0.2
 // @description  Dominion Games Gold Subscription - Add Sets of 10 it the lobby page (table creation)
 // @author       barmkin
 // @match        https://dominion.games/
@@ -146,6 +146,20 @@ var cardsSets = [
             {'Adventures Abroad': [
                 'Festival', 'Laboratory', 'Remodel', 'Sentry', 'Vassal',
                 'Crossroads', 'Farmland', 'Fool\'s Gold', 'Oracle', 'Spice Merchant'
+            ]}
+        ]
+    },
+    {
+        'name': 'Dominion \& Darkages',
+        'sets':
+        [
+            {'High and Low': [
+                'Cellar', 'Moneylender', 'Throne Room', 'Witch', 'Workshop',
+                'Hermit', 'Hunting Grounds', 'Mystic', 'Poor House', 'Wandering Minstrel'
+            ]},
+            {'Chivalry and Revelry': [
+                'Festival', 'Gardens', 'Laboratory', 'Library', 'Remodel',
+                'Altar', 'Knights', 'Rats', 'Scavenger', 'Squire'
             ]}
         ]
     },
