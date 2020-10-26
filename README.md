@@ -15,19 +15,20 @@ This repository is currently composed of
 ## Installation
 - Install [tampermonkey](https://www.tampermonkey.net/)
 - Open a script of this repository clicking on raw (this should open tampermonkey install page, then click on install)
+
 Alternatively
 - Go to Settings tab (on tampermonkey extension)
 - Install from URL -> paste the link
 
 
 ## Usage
-
 - Go to https://dominion.games/ whith the selected script enabled
+- Create a new table
+- Click on one of the buttons
+- Wait a few seconds (if the script is working, a loading message will be displayed above the card input box) 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
