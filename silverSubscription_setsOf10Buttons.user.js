@@ -1,124 +1,382 @@
 // ==UserScript==
 // @name         Silver Subscription - Sets of 10 Button
 // @namespace    games.dominion.script
-// @version      0.1
+// @version      0.3
 // @description  Dominion Games Silver Subscription - Add Sets of 10 it the lobby page (table creation)
 // @author       barmkin
 // @match        https://dominion.games/
 // @grant        none
 // @require      https://code.jquery.com/jquery-3.5.1.min.js
-// @license	 MIT
+// @license      MIT
 // ==/UserScript==
 
 /* ------------------------------------------------------------------------------- */
 /* --- Cards Sets ---------------------------------------------------------------- */
 // You can edit this section, see README
 var cardsSets = [
+    /* Dominion + Silver Sub */
     {
         'name': 'Dominion Only',
+        'img': ['images/elements/base-small-white.png'],
         'sets':
         [
             {'First Game': [
-                'Cellar', 'Market', 'Merchant', 'Militia', 'Mine', 'Moat', 'Remodel', 'Smithy', 'Village', 'Workshop'
+                'Cellar', 'Market', 'Merchant', 'Militia', 'Mine',
+                'Moat', 'Remodel', 'Smithy', 'Village', 'Workshop'
             ]},
             {'Size Distortion': [
-                'Artisan', 'Bandit', 'Bureaucrat', 'Chapel', 'Festival', 'Gardens', 'Sentry', 'Throne Room', 'Witch', 'Workshop'
+                'Artisan', 'Bandit', 'Bureaucrat', 'Chapel', 'Festival',
+                'Gardens', 'Sentry', 'Throne Room', 'Witch', 'Workshop'
             ]},
             {'Deck Top': [
-                'Artisan', 'Bureaucrat', 'Council Room', 'Festival', 'Harbinger', 'Laboratory', 'Moneylender', 'Sentry', 'Vassal', 'Village'
+                'Artisan', 'Bureaucrat', 'Council Room', 'Festival', 'Harbinger',
+                'Laboratory', 'Moneylender', 'Sentry', 'Vassal', 'Village'
             ]},
             {'Sleight of Hand': [
-                'Cellar', 'Council Room', 'Festival', 'Gardens', 'Library', 'Harbinger', 'Militia', 'Poacher', 'Smithy', 'Throne Room'
+                'Cellar', 'Council Room', 'Festival', 'Gardens', 'Library',
+                'Harbinger', 'Militia', 'Poacher', 'Smithy', 'Throne Room'
             ]},
             {'Improvements': [
-                'Artisan', 'Cellar', 'Market', 'Merchant', 'Mine', 'Moat', 'Moneylender', 'Poacher', 'Remodel', 'Witch'
+                'Artisan', 'Cellar', 'Market', 'Merchant', 'Mine',
+                'Moat', 'Moneylender', 'Poacher', 'Remodel', 'Witch'
             ]},
             {'Silver \& Gold': [
-                'Bandit', 'Bureaucrat', 'Chapel', 'Harbinger', 'Laboratory', 'Merchant', 'Mine', 'Moneylender', 'Throne Room', 'Vassal'
-            ]}
-        ]
-    },
-    {
-        'name': 'Intrigue Only',
-        'sets':
-        [
-            {'Victory Dance': [
-                'Baron', 'Courtier', 'Duke', 'Harem', 'Ironworks', 'Masquerade', 'Mill', 'Nobles', 'Patrol', 'Replace'
-            ]},
-            {'The Plot Thickens': [
-                'Conspirator', 'Ironworks', 'Lurker', 'Pawn', 'Mining Village', 'Secret Passage', 'Steward', 'Swindler', 'Torturer', 'Trading Post'
-            ]},
-            {'Best Wishes': [
-                'Baron', 'Conspirator', 'Courtyard', 'Diplomat', 'Duke', 'Secret Passage', 'Shanty Town', 'Torturer', 'Upgrade', 'Wishing Well'
+                'Bandit', 'Bureaucrat', 'Chapel', 'Harbinger', 'Laboratory',
+                'Merchant', 'Mine', 'Moneylender', 'Throne Room', 'Vassal'
             ]}
         ]
     },
     {
         'name': 'Dominion \& Intrigue',
+        'img': ['images/elements/base-small-white.png', 'images/elements/intrigue-small-white.png'],
         'sets':
         [
             {'Underlings': [
-                'Cellar', 'Festival', 'Library', 'Sentry', 'Vassal', 'Courtier', 'Diplomat', 'Minion', 'Nobles', 'Pawn'
+                'Cellar', 'Festival', 'Library', 'Sentry', 'Vassal',
+                'Courtier', 'Diplomat', 'Minion', 'Nobles', 'Pawn'
             ]},
             {'Grand Scheme': [
-                'Artisan', 'Council Room', 'Market', 'Militia', 'Workshop', 'Bridge', 'Mill', 'Mining Village', 'Patrol', 'Shanty Town'
+                'Artisan', 'Council Room', 'Market', 'Militia', 'Workshop',
+                'Bridge', 'Mill', 'Mining Village', 'Patrol', 'Shanty Town'
             ]},
             {'Deconstruction': [
-                'Bandit', 'Mine', 'Remodel', 'Throne Room', 'Village', 'Diplomat', 'Harem', 'Lurker', 'Replace', 'Swindler'
+                'Bandit', 'Mine', 'Remodel', 'Throne Room', 'Village',
+                'Diplomat', 'Harem', 'Lurker', 'Replace', 'Swindler'
+            ]}
+        ]
+    },
+    {
+        'name': 'Dominion \& Seaside',
+        'img': ['images/elements/base-small-white.png', 'images/elements/seaside-small-white.png'],
+        'sets':
+        [
+            {'Reach for Tomorrow': [
+                'Artisan', 'Cellar', 'Council Room', 'Vassal', 'Village',
+                'Cutpurse', 'Ghost Ship', 'Lookout', 'Sea Hag', 'Treasure Map'
+            ]},
+            {'Repetition': [
+                'Festival', 'Harbinger', 'Militia', 'Workshop', 'Caravan',
+                'Explorer', 'Outpost', 'Pearl Diver', 'Pirate Ship', 'Treasury'
+            ]},
+            {'Give and Take': [
+                'Library', 'Market', 'Moneylender', 'Witch', 'Ambassador',
+                'Fishing Village', 'Haven', 'Island', 'Salvager', 'Smugglers'
+            ]}
+        ]
+    },
+    {
+        'name': 'Dominion \& Prosperity',
+        'img': ['images/elements/base-small-white.png', 'images/elements/prosperity-small-white.png'],
+        'sets':
+        [
+            {'Biggest Money': [
+                'Artisan', 'Harbinger', 'Laboratory', 'Mine', 'Moneylender',
+                'Bank', 'Grand Market', 'Mint', 'Royal Seal', 'Venture'
+            ]},
+            {'The King\'s Army': [
+                'Bureaucrat', 'Council Room', 'Merchant', 'Moat', 'Village',
+                'Expand', 'Goons', 'King\'s Court', 'Rabble', 'Vault'
+            ]},
+            {'The Good Life': [
+                'Artisan', 'Bureaucrat', 'Cellar', 'Gardens', 'Village',
+                'Contraband', 'Counting House', 'Hoard', 'Monument', 'Mountebank'
+            ]}
+        ]
+    },
+    {
+        'name': 'Dominion \& Cornucopia',
+        'img': ['images/elements/base-small-white.png', 'images/elements/cornucopia-small-white.png'],
+        'sets':
+        [
+            {'Bounty of the Hunt': [
+                'Cellar', 'Festival', 'Militia', 'Moneylender', 'Smithy',
+                'Harvest', 'Horn of Plenty', 'Hunting Party', 'Menagerie', 'Tournament'
+            ]},
+            {'Bad Omens': [
+                'Bureaucrat', 'Laboratory', 'Merchant', 'Poacher', 'Throne Room',
+                'Fortune Teller', 'Hamlet', 'Horn of Plenty', 'Jester', 'Remake'
+            ]},
+            {'The Jester\'s Workshop': [
+                'Artisan', 'Laboratory', 'Market', 'Remodel', 'Workshop',
+                'Fairgrounds', 'Farming Village', 'Horse Traders', 'Jester', 'Young Witch'
+            ]}
+        ]
+    },
+    {
+        'name': 'Dominion \& Hinterlands',
+        'img': ['images/elements/base-small-white.png', 'images/elements/hinterlands-small-white.png'],
+        'sets':
+        [
+            {'Highway Robbery': [
+                'Cellar', 'Library', 'Moneylender', 'Throne Room', 'Workshop',
+                'Highway', 'Inn', 'Margrave', 'Noble Brigand', 'Oasis'
+            ]},
+            {'Adventures Abroad': [
+                'Festival', 'Laboratory', 'Remodel', 'Sentry', 'Vassal',
+                'Crossroads', 'Farmland', 'Fool\'s Gold', 'Oracle', 'Spice Merchant'
+            ]}
+        ]
+    },
+    {
+        'name': 'Dominion \& Guilds',
+        'img': ['images/elements/base-small-white.png', 'images/elements/guilds-small-white.png'],
+        'sets':
+        [
+            {'Arts and Crafts': [
+                'Laboratory', 'Cellar', 'Workshop', 'Festival', 'Moneylender',
+                'Stonemason', 'Advisor', 'Baker', 'Journeyman', 'Merchant Guild'
+            ]},
+            {'Clean Living': [
+                'Bandit', 'Militia', 'Moneylender', 'Gardens', 'Village',
+                'Butcher', 'Baker', 'Candlestick Maker', 'Doctor', 'Soothsayer'
+            ]},
+            {'Gilding the Lily': [
+                'Library', 'Merchant', 'Remodel', 'Market', 'Sentry',
+                'Plaza', 'Masterpiece', 'Candlestick Maker', 'Taxman', 'Herald'
+            ]}
+        ]
+    },
+
+    /* Intrigue  + Silver Sub */
+    {
+        'name': 'Intrigue Only',
+        'img': ['images/elements/intrigue-small-white.png'],
+        'sets':
+        [
+            {'Victory Dance': [
+                'Baron', 'Courtier', 'Duke', 'Harem', 'Ironworks',
+                'Masquerade', 'Mill', 'Nobles', 'Patrol', 'Replace'
+            ]},
+            {'The Plot Thickens': [
+                'Conspirator', 'Ironworks', 'Lurker', 'Pawn', 'Mining Village',
+                'Secret Passage', 'Steward', 'Swindler', 'Torturer', 'Trading Post'
+            ]},
+            {'Best Wishes': [
+                'Baron', 'Conspirator', 'Courtyard', 'Diplomat', 'Duke',
+                'Secret Passage', 'Shanty Town', 'Torturer', 'Upgrade', 'Wishing Well'
             ]}
         ]
     },
     {
         'name': 'Intrigue \& Seaside',
+        'img': ['images/elements/intrigue-small-white.png', 'images/elements/seaside-small-white.png'],
         'sets':
         [
             {'A Star to Steer By': [
-                'Secret Passage', 'Diplomat', 'Swindler', 'Wishing Well', 'Courtier', 'Lookout', 'Treasure Map', 'Ghost Ship', 'Haven', 'Outpost'
+                'Secret Passage', 'Diplomat', 'Swindler', 'Wishing Well', 'Courtier',
+                'Lookout', 'Treasure Map', 'Ghost Ship', 'Haven', 'Outpost'
             ]},
             {'Shore Patrol': [
-                'Patrol', 'Replace', 'Shanty Town', 'Trading Post', 'Pawn', 'Island', 'Wharf', 'Cutpurse', 'Lighthouse', 'Warehouse'
+                'Patrol', 'Replace', 'Shanty Town', 'Trading Post', 'Pawn',
+                'Island', 'Wharf', 'Cutpurse', 'Lighthouse', 'Warehouse'
             ]},
             {'Bridge Crossing': [
-                'Lurker', 'Nobles', 'Duke', 'Conspirator', 'Bridge', 'Salvager', 'Embargo', 'Smugglers', 'Native Village', 'Treasury'
+                'Lurker', 'Nobles', 'Duke', 'Conspirator', 'Bridge',
+                'Salvager', 'Embargo', 'Smugglers', 'Native Village', 'Treasury'
             ]}
         ]
     },
     {
         'name': 'Intrigue \& Prosperity',
+        'img': ['images/elements/intrigue-small-white.png', 'images/elements/prosperity-small-white.png'],
         'sets':
         [
             {'Paths to Victory': [
-                'Bishop', 'Counting House', 'Goons', 'Monument', 'Peddler', 'Baron', 'Harem', 'Pawn', 'Shanty Town', 'Upgrade'
+                'Bishop', 'Counting House', 'Goons', 'Monument', 'Peddler',
+                'Baron', 'Harem', 'Pawn', 'Shanty Town', 'Upgrade'
             ]},
             {'All Along the Watchtower': [
-                'Hoard', 'Talisman', 'Trade Route', 'Vault', 'Watchtower', 'Bridge', 'Mill', 'Mining Village', 'Pawn', 'Torturer'
+                'Hoard', 'Talisman', 'Trade Route', 'Vault', 'Watchtower',
+                'Bridge', 'Mill', 'Mining Village', 'Pawn', 'Torturer'
             ]},
             {'Lucky Seven': [
-                'Bank', 'Expand', 'Forge', 'King\'s Court', 'Vault', 'Bridge', 'Lurker', 'Patrol', 'Swindler', 'Wishing Well'
+                'Bank', 'Expand', 'Forge', 'King\'s Court', 'Vault',
+                'Bridge', 'Lurker', 'Patrol', 'Swindler', 'Wishing Well'
             ]}
         ]
     },
     {
         'name': 'Intrigue \& Cornucopia',
+        'img': ['images/elements/intrigue-small-white.png', 'images/elements/cornucopia-small-white.png'],
         'sets':
         [
             {'Last Laughs': [
-                'Farming Village', 'Harvest', 'Horse Traders', 'Hunting Party', 'Jester', 'Minion', 'Nobles', 'Pawn', 'Steward', 'Swindler'
+                'Farming Village', 'Harvest', 'Horse Traders', 'Hunting Party', 'Jester',
+                'Minion', 'Nobles', 'Pawn', 'Steward', 'Swindler'
             ]},
             {'The Spice of Life': [
-                'Fairgrounds', 'Horn of Plenty', 'Remake', 'Tournament', 'Young Witch', 'Courtier', 'Courtyard', 'Diplomat', 'Mining Village', 'Replace'
+                'Fairgrounds', 'Horn of Plenty', 'Remake', 'Tournament', 'Young Witch',
+                'Courtier', 'Courtyard', 'Diplomat', 'Mining Village', 'Replace'
             ]},
             {'Small Victories': [
-                'Fortune Teller', 'Hamlet', 'Hunting Party', 'Remake', 'Tournament', 'Conspirator', 'Duke', 'Harem', 'Pawn', 'Secret Passage'
+                'Fortune Teller', 'Hamlet', 'Hunting Party', 'Remake', 'Tournament',
+                'Conspirator', 'Duke', 'Harem', 'Pawn', 'Secret Passage'
             ]}
         ]
-    }
+    },
+    {
+        'name': 'Intrigue \& Hinterlands',
+        'img': ['images/elements/intrigue-small-white.png', 'images/elements/hinterlands-small-white.png'],
+        'sets':
+        [
+            {'Money for Nothing': [
+                'Replace', 'Patrol', 'Pawn', 'Shanty Town', 'Torturer',
+                'Cache', 'Cartographer', 'Jack of all Trades', 'Silk Road', 'Tunnel'
+            ]},
+            {'The Duke\'s Ball': [
+                'Conspirator', 'Duke', 'Harem', 'Masquerade', 'Upgrade',
+                'Duchess', 'Haggler', 'Inn', 'Noble Brigand', 'Scheme'
+            ]}
+        ]
+    },
+    {
+        'name': 'Intrigue \& Guilds',
+        'img': ['images/elements/intrigue-small-white.png', 'images/elements/guilds-small-white.png'],
+        'sets':
+        [
+            {'Name That Card': [
+                'Baker', 'Doctor', 'Plaza', 'Advisor', 'Masterpiece',
+                'Courtyard', 'Harem', 'Nobles', 'Replace', 'Wishing Well'
+            ]},
+            {'Tricks of the Trade': [
+                'Stonemason', 'Herald', 'Soothsayer', 'Journeyman', 'Butcher',
+                'Conspirator', 'Masquerade', 'Mill', 'Nobles', 'Secret Passage'
+            ]},
+            {'Decisions, Decisions': [
+                'Merchant Guild', 'Candlestick Maker', 'Masterpiece', 'Taxman', 'Butcher',
+                'Bridge', 'Pawn', 'Mining Village', 'Upgrade', 'Duke'
+            ]}
+        ]
+    },
+
+    /* Seaside + Silver Sub */
+    {
+        'name': 'Seaside Only',
+        'img': ['images/elements/seaside-small-white.png'],
+        'sets':
+        [
+            {'High Seas': [
+                'Bazaar', 'Caravan', 'Embargo', 'Explorer', 'Haven',
+                'Island', 'Lookout', 'Pirate Ship', 'Smugglers', 'Wharf'
+            ]},
+            {'Buried Treasure': [
+                'Ambassador', 'Cutpurse', 'Fishing Village', 'Lighthouse', 'Outpost',
+                'Pearl Diver', 'Tactician', 'Treasure Map', 'Warehouse', 'Wharf'
+            ]},
+            {'Shipwrecks': [
+                'Ghost Ship', 'Merchant Ship', 'Native Village', 'Navigator', 'Pearl Diver',
+                'Salvager', 'Sea Hag', 'Smugglers', 'Treasury', 'Warehouse'
+            ]}
+        ]
+    },
+    {
+        'name': 'Seaside \& Prosperity',
+        'img': ['images/elements/seaside-small-white.png', 'images/elements/prosperity-small-white.png'],
+        'sets':
+        [
+            {'Exploding Kingdom': [
+                'Bishop', 'City', 'Grand Market', 'King\'s Court', 'Quarry',
+                'Fishing Village', 'Lookout', 'Outpost', 'Tactician', 'Wharf'
+            ]},
+            {'Pirate Bay': [
+                'Expand', 'Hoard', 'Mint', 'Trade Route', 'Watchtower',
+                'Bazaar', 'Lighthouse', 'Pirate Ship', 'Smugglers', 'Warehouse'
+            ]}
+        ]
+    },
+    {
+        'name': 'Seaside \& Cornucopia',
+        'img': ['images/elements/seaside-small-white.png', 'images/elements/cornucopia-small-white.png'],
+        'sets':
+        [
+            {'Collector': [
+                'Embargo', 'Fishing Village', 'Merchant Ship', 'Navigator', 'Smugglers',
+                'Fairgrounds', 'Farming Village', 'Fortune Teller', 'Harvest', 'Hunting Party'
+            ]},
+            {'Collider': [
+                'Lighthouse', 'Salvager', 'Treasure Map', 'Treasury', 'Warehouse',
+                'Menagerie', 'Horn of Plenty', 'Horse Traders', 'Jester', 'Tournament'
+            ]}
+        ]
+    },
+    {
+        'name': 'Seaside \& Hinterlands',
+        'img': ['images/elements/seaside-small-white.png', 'images/elements/hinterlands-small-white.png'],
+        'sets':
+        [
+            {'Travelers': [
+                'Cutpurse', 'Island', 'Lookout', 'Merchant Ship', 'Warehouse',
+                'Cartographer', 'Crossroads', 'Farmland', 'Silk Road', 'Stables'
+            ]},
+            {'Diplomacy': [
+                'Ambassador', 'Bazaar', 'Caravan', 'Embargo', 'Smugglers',
+                'Embassy', 'Farmland', 'Ill-Gotten Gains', 'Noble Brigand', 'Trader'
+            ]}
+        ]
+    },
+    {
+        'name': 'Seaside \& Guilds',
+        'img': ['images/elements/seaside-small-white.png', 'images/elements/guilds-small-white.png'],
+        'sets':
+        [
+            {'Ghosts \& Taxes': [
+                'Cutpurse', 'Ghost Ship', 'Haven', 'Outpost', 'Smugglers',
+                'Butcher', 'Candlestick Maker', 'Herald', 'Soothsayer', 'Taxman'
+            ]},
+            {'Island Builder': [
+                'Island', 'Native Village', 'Salvager', 'Tactician', 'Treasury',
+                'Baker', 'Doctor', 'Merchant Guild', 'Plaza', 'Stonemason'
+            ]}
+        ]
+    },
+
+    /* Prosperity + Silver Sub */
+    {
+        'name': 'Prosperity Only',
+        'img': ['images/elements/prosperity-small-white.png'],
+        'sets':
+        [
+            {'Beginners': [
+                'Bank', 'Counting House', 'Expand', 'Goons', 'Monument',
+                'Rabble', 'Royal Seal', 'Venture', 'Watchtower', 'Worker\'s Village'
+            ]},
+            {'Friendly Interactive': [
+                'Bishop', 'City', 'Contraband', 'Forge', 'Hoard',
+                'Peddler', 'Royal Seal', 'Trade Route', 'Vault', 'Worker\'s Village'
+            ]},
+            {'Big Actions': [
+                'City', 'Expand', 'Grand Market', 'King\'s Court', 'Loan',
+                'Mint', 'Quarry', 'Rabble', 'Talisman', 'Vault'
+            ]}
+        ]
+    },
 ];
 /* ------------------------------------------------------------------------------- */
 
 // Global variables
 var inLobbyFlag = false;
 var cardNumber = 0;
+var lastSelectedMatch = '';
 
 
 (function() {
@@ -128,6 +386,9 @@ var cardNumber = 0;
 
 function waitMatchLobby(checkFrequencyInMs) {
   (function loopSearch() {
+    // Load title
+    document.title = lastSelectedMatch + document.title;
+    // Add buttons
     if (document.evaluate(
 			'//button[contains(@class, \'kingdom-selection\') and text()="Select Kingdom Cards"]',
 			document.body, null, XPathResult.BOOLEAN_TYPE, null).booleanValue) {
@@ -135,7 +396,7 @@ function waitMatchLobby(checkFrequencyInMs) {
       inLobbyFlag = true;
 	  setTimeout(function () {
         loopSearch();
-      }, 10000);
+      }, 5000);
     } else {
       inLobbyFlag = false;
       cardNumber = 0;
@@ -159,7 +420,18 @@ function loadMatchButtons() {
         let lineBreak = document.createElement('br');
         rulesEditor.appendChild(lineBreak);
         let h = document.createElement("h2");
-        let t = document.createTextNode(cardsSets[sets].name);
+
+        // Loading Image (if present)
+        let imgVals = cardsSets[sets].img;
+        if (imgVals != undefined) {
+            for (let imgI = 0; imgI < imgVals.length; imgI+=1) {
+                let imgEl = document.createElement('img');
+                imgEl.src = imgVals[imgI];
+                imgEl.style = 'width: 7%; ';
+                h.appendChild(imgEl);
+            }
+        }
+        let t = document.createTextNode(' ' + cardsSets[sets].name);
         h.appendChild(t);
         rulesEditor.appendChild(h);
 
@@ -169,11 +441,16 @@ function loadMatchButtons() {
         for (let i = 0; i < cardsSets[sets].sets.length; i+=1) {
             button = document.createElement('button');
             button.classList.add('lobby-button');
+            button.title = cardsSets[sets].sets[i][Object.getOwnPropertyNames(cardsSets[sets].sets[i])].toString();
+            buttonText = document.createTextNode(Object.getOwnPropertyNames(cardsSets[sets].sets[i]).toLocaleString());
+
+            if ((Object.getOwnPropertyNames(cardsSets[sets].sets[i]).toLocaleString() + ' - ') == lastSelectedMatch) {
+                button.style = 'background-color: green !important;';
+            }
             button.onclick = function(){
                 setTimeout(loadMatch(cardsSets[sets].sets[i]), 1000);
             };
 
-            buttonText = document.createTextNode(Object.getOwnPropertyNames(cardsSets[sets].sets[i]).toLocaleString());
             button.appendChild(buttonText);
             rulesEditor.appendChild(button);
         }
@@ -182,6 +459,7 @@ function loadMatchButtons() {
 
 function loadMatch(selectedMatch) {
     console.log('Load cards for ' + Object.getOwnPropertyNames(selectedMatch).toLocaleString());
+    lastSelectedMatch = Object.getOwnPropertyNames(selectedMatch).toLocaleString() + ' - ';
 
     document.evaluate('//button[contains(@class, \'lobby-button\') and text()="Select Kingdom Cards"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
 
