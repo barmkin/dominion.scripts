@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Silver Subscription - Sets of 10 Button
 // @namespace    games.dominion.script
-// @version      0.3
+// @version      0.4
 // @description  Dominion Games Silver Subscription - Add Sets of 10 it the lobby page (table creation)
 // @author       barmkin
 // @match        https://dominion.games/
@@ -376,7 +376,7 @@ var cardsSets = [
 // Global variables
 var inLobbyFlag = false;
 var cardNumber = 0;
-var lastSelectedMatch = '';
+var lastSelectedMatch = 'Dominion Online';
 
 
 (function() {
@@ -387,7 +387,7 @@ var lastSelectedMatch = '';
 function waitMatchLobby(checkFrequencyInMs) {
   (function loopSearch() {
     // Load title
-    document.title = lastSelectedMatch + document.title;
+    document.title = lastSelectedMatch;
     // Add buttons
     if (document.evaluate(
 			'//button[contains(@class, \'kingdom-selection\') and text()="Select Kingdom Cards"]',
@@ -444,11 +444,16 @@ function loadMatchButtons() {
             button.title = cardsSets[sets].sets[i][Object.getOwnPropertyNames(cardsSets[sets].sets[i])].toString();
             buttonText = document.createTextNode(Object.getOwnPropertyNames(cardsSets[sets].sets[i]).toLocaleString());
 
-            if ((Object.getOwnPropertyNames(cardsSets[sets].sets[i]).toLocaleString() + ' - ') == lastSelectedMatch) {
+            if (Object.getOwnPropertyNames(cardsSets[sets].sets[i]).toLocaleString() == lastSelectedMatch) {
                 button.style = 'background-color: green !important;';
             }
             button.onclick = function(){
                 setTimeout(loadMatch(cardsSets[sets].sets[i]), 1000);
+                var target = document.querySelectorAll('.lobby-button');
+                Array.prototype.forEach.call(target, function(element){
+                    element.removeAttribute('style');
+                });
+                this.style = 'background-color: blue !important;'
             };
 
             button.appendChild(buttonText);
@@ -459,7 +464,7 @@ function loadMatchButtons() {
 
 function loadMatch(selectedMatch) {
     console.log('Load cards for ' + Object.getOwnPropertyNames(selectedMatch).toLocaleString());
-    lastSelectedMatch = Object.getOwnPropertyNames(selectedMatch).toLocaleString() + ' - ';
+    lastSelectedMatch = Object.getOwnPropertyNames(selectedMatch).toLocaleString();
 
     document.evaluate('//button[contains(@class, \'lobby-button\') and text()="Select Kingdom Cards"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
 
