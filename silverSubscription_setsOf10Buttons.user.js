@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Silver Subscription - Sets of 10 Button
 // @namespace    games.dominion.script
-// @version      0.4
+// @version      0.5
 // @description  Dominion Games Silver Subscription - Add Sets of 10 it the lobby page (table creation)
 // @author       barmkin
 // @match        https://dominion.games/
@@ -370,6 +370,123 @@ var cardsSets = [
             ]}
         ]
     },
+    {
+        'name': 'Prosperity \& Cornucopia',
+        'img': ['images/elements/prosperity-small-white.png', 'images/elements/cornucopia-small-white.png'],
+        'sets':
+        [
+            {'Detours': [
+                'Rabble', 'Peddler', 'Hoard', 'Trade Route', 'Venture',
+                'Farming Village', 'Horn of Plenty', 'Jester', 'Remake', 'Tournament'
+            ]}
+        ]
+    },
+    {
+        'name': 'Prosperity \& Hinterlands',
+        'img': ['images/elements/prosperity-small-white.png', 'images/elements/hinterlands-small-white.png'],
+        'sets':
+        [
+            {'Instant Gratification': [
+                'Bishop', 'Expand', 'Hoard', 'Mint', 'Watchtower',
+                'Farmland', 'Haggler', 'Ill-Gotten Gains', 'Noble Brigand', 'Trader'
+            ]},
+            {'Treasure Trove': [
+                'Bank', 'Monument', 'Royal Seal', 'Trade Route', 'Venture',
+                'Cache', 'Develop', 'Fool\'s Gold', 'Ill-Gotten Gains', 'Mandarin'
+            ]}
+        ]
+    },
+    {
+        'name': 'Prosperity \& Guilds',
+        'img': ['images/elements/prosperity-small-white.png', 'images/elements/guilds-small-white.png'],
+        'sets':
+        [
+            {'Quarrymen': [
+                'City', 'Expand', 'Grand Market', 'Mountebank', 'Quarry',
+                'Baker', 'Merchant Guild', 'Soothsayer', 'Stonemason', 'Taxman'
+            ]},
+            {'Metal \& Meat': [
+                'Forge', 'King\'s Court', 'Monument', 'Venture', 'Watchtower',
+                'Butcher', 'Candlestick Maker', 'Plaza', 'Stonemason', 'Taxman'
+            ]},
+            {'Penny Pinching': [
+                'Bank', 'Counting House', 'Goons', 'Peddler', 'Royal Seal',
+                'Advisor', 'Doctor', 'Herald', 'Journeyman', 'Merchant Guild'
+            ]}
+        ]
+    },
+
+    /* Cornucopia + Silver Sub */
+    {
+        'name': 'Cornucopia \& Hinterlands',
+        'img': ['images/elements/cornucopia-small-white.png', 'images/elements/hinterlands-small-white.png'],
+        'sets':
+        [
+            {'Blue Harvest': [
+                'Hamlet', 'Horn of Plenty', 'Horse Traders', 'Jester', 'Tournament',
+                'Fool\'s Gold', 'Mandarin', 'Noble Brigand', 'Trader', 'Tunnel'
+            ]},
+            {'Traveling Circus': [
+                'Fairgrounds', 'Farming Village', 'Hunting Party', 'Jester', 'Menagerie',
+                'Border Village', 'Embassy', 'Fool\'s Gold', 'Nomad Camp', 'Oasis'
+            ]}
+        ]
+    },
+    {
+        'name': 'Cornucopia \& Guilds',
+        'img': ['images/elements/cornucopia-small-white.png', 'images/elements/guilds-small-white.png'],
+        'sets':
+        [
+            {'Misfortune': [
+                'Advisor', 'Candlestick Maker', 'Doctor', 'Fairgrounds', 'Farming Village',
+                'Fortune Teller', 'Horse Traders', 'Jester', 'Soothsayer', 'Taxman'
+            ]},
+            {'Baking Contest': [
+                'Baker', 'Farming Village', 'Harvest', 'Herald', 'Journeyman',
+                'Masterpiece', 'Menagerie', 'Remake', 'Stonemason', 'Tournament'
+            ]}
+        ]
+    },
+
+    /* Cornucopia + Silver Sub */
+    {
+        'name': 'Hinterlands Only',
+        'img': ['images/elements/hinterlands-small-white.png'],
+        'sets':
+        [
+            {'Introduction': [
+                'Cache', 'Crossroads', 'Develop', 'Haggler', 'Jack of all Trades',
+                'Margrave', 'Nomad Camp', 'Oasis', 'Spice Merchant', 'Stables'
+            ]},
+            {'Fair Trades': [
+                'Border Village', 'Cartographer', 'Develop', 'Duchess', 'Farmland',
+                'Ill-Gotten Gains', 'Noble Brigand', 'Silk Road', 'Stables', 'Trader'
+            ]},
+            {'Bargains': [
+                'Border Village', 'Cache', 'Duchess', 'Fool\'s Gold', 'Haggler',
+                'Highway', 'Nomad Camp', 'Scheme', 'Spice Merchant', 'Trader'
+            ]},
+            {'Gambits': [
+                'Cartographer', 'Crossroads', 'Embassy', 'Inn', 'Jack of all Trades',
+                'Mandarin', 'Nomad Camp', 'Oasis', 'Oracle', 'Tunnel'
+            ]}
+        ]
+    },
+    {
+        'name': 'Hinterlands \& Guilds',
+        'img': ['images/elements/hinterlands-small-white.png', 'images/elements/guilds-small-white.png'],
+        'sets':
+        [
+            {'Exchanges': [
+                'Butcher', 'Herald', 'Masterpiece', 'Soothsayer', 'Stonemason',
+                'Border Village', 'Develop', 'Ill-Gotten Gains', 'Stables', 'Trader'
+            ]},
+            {'Road to Riches': [
+                'Advisor', 'Baker', 'Candlestick Maker', 'Journeyman', 'Merchant Guild',
+                'Crossroads', 'Farmland', 'Highway', 'Spice Merchant', 'Tunnel'
+            ]}
+        ]
+    }
 ];
 /* ------------------------------------------------------------------------------- */
 
