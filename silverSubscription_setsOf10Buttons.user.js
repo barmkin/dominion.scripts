@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Silver Subscription - Sets of 10 Button
 // @namespace    games.dominion.script
-// @version      0.5
+// @version      0.6
 // @description  Dominion Games Silver Subscription - Add Sets of 10 it the lobby page (table creation)
 // @author       barmkin
 // @match        https://dominion.games/
@@ -645,13 +645,19 @@ function pickCards(selectedMatch) {
 function pickCard(cardName) {
     console.log("Picking " + cardName);
 
-    if (cardName == 'Random') {
+    if (cardName == 'Random') { // Base Set Random
         document.evaluate('//selection-set', document.body, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+        return;
     }
 
+    let parser = new DOMParser();
+    let xmlDoc;
     let miniCards = document.querySelectorAll('.mini-card');
+    let miniCardName = '';
     for(let i=0; i < miniCards.length; i++) {
-        if (miniCards[i].innerHTML.includes(cardName)) {
+        xmlDoc = parser.parseFromString(miniCards[i].innerHTML,"text/html");
+        miniCardName = xmlDoc.querySelector('.full-card-name').innerHTML;
+        if (miniCardName == cardName) {
             miniCards[i].click();
             break;
         }
