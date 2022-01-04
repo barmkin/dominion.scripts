@@ -1,14 +1,18 @@
 // ==UserScript==
 // @name         Free Subscription - Base Sets of 10 Buttons
 // @namespace    games.dominion.script
-// @version      0.1
+// @version      0.2
 // @description  This script adds (First Game, Size Distortion, Deck Top, Sleight of Hand, Improvements and Silver & Gold) buttons to table creations
 // @author       barmkin
-// @match        https://dominion.games/
+// @match        https://dominion.games/*
 // @grant        none
 // @require      https://code.jquery.com/jquery-3.5.1.min.js
-// @license	 MIT
+// @license      MIT
 // ==/UserScript==
+
+/* --- Changelog 0.2 ---
+  Add multilanguages support
+*/
 
 /* ------------------------------------------------------------------------------- */
 /* --- Cards Sets ---------------------------------------------------------------- */
@@ -54,7 +58,7 @@ var cardNumber = 0;
 function waitMatchLobby(checkFrequencyInMs) {
   (function loopSearch() {
     if (document.evaluate(
-			'//button[contains(@class, \'kingdom-selection\') and text()="Select Kingdom Cards"]',
+			'//button[contains(@class, \'kingdom-selection\') and contains(@ng-click, \'$ctrl.showKingdomSelection()\')]',
 			document.body, null, XPathResult.BOOLEAN_TYPE, null).booleanValue) {
       loadMatchButtons();
       inLobbyFlag = true;
@@ -108,7 +112,7 @@ function loadMatchButtons() {
 function loadMatch(selectedMatch) {
     console.log('Load cards for ' + Object.getOwnPropertyNames(selectedMatch).toLocaleString());
 
-    document.evaluate('//button[contains(@class, \'lobby-button\') and text()="Select Kingdom Cards"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    document.evaluate('//button[contains(@class, \'lobby-button\') and contains(@ng-click, \'$ctrl.showKingdomSelection()\')]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
 
     document.body.style.cursor='progress';
     // Print waiting...
@@ -169,6 +173,7 @@ function pickCards(selectedMatch) {
 
 function pickCard(cardName) {
     console.log("Picking " + cardName);
+    let kebabCaseCardName = cardName.replaceAll(' ','-').replaceAll('\'','').toLowerCase();
 
     if (cardName == 'Random') {
         document.evaluate('//selection-set', document.body, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
@@ -176,9 +181,16 @@ function pickCard(cardName) {
 
     let miniCards = document.querySelectorAll('.mini-card');
     for(let i=0; i < miniCards.length; i++) {
-        if (miniCards[i].innerHTML.includes(cardName)) {
-            miniCards[i].click();
-            break;
+        let miniCard = miniCards[i];
+        // find mini-card-art
+        for (let j=0; j < miniCard.childElementCount; j++) {
+            let miniCardImage = miniCard.children[j];
+            if (miniCard.children[1].classList.value == "mini-card-art") {
+                if (miniCard.children[1].style.backgroundImage.includes(kebabCaseCardName)) {
+                    miniCards[i].click();
+                }
+                break;
+            }
         }
     }
 }
